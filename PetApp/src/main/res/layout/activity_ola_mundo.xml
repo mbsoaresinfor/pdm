@@ -20,10 +20,19 @@
             android:onClick="abreJanela"
             android:text="abre nova janela" />
 
-        <TextView
-            android:id="@+id/textView"
+        <EditText
+            android:id="@+id/editTextTextPersonName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="textPersonName" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
