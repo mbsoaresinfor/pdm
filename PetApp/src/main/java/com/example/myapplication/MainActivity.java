@@ -15,10 +15,14 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+    List<Fruta> listaFruta = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     @Override
     public boolean onSupportNavigateUp() {

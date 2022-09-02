@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OlaMundoActivity">
+    tools:context=".CadastroFrutasActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,33 +13,37 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
-        <Button
-            android:id="@+id/button"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="abreJanela"
-            android:text="abre nova janela" />
+            android:layout_height="62dp"
+            android:text="Nome da Fruta:" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/editTextTextNomeFruta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Nome"
             android:inputType="textPersonName" />
 
-        <ImageView
-            android:id="@+id/imageView4"
+        <TextView
+            android:id="@+id/textView5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            android:layout_height="54dp"
+            android:text="Preço da Fruta" />
 
         <EditText
-            android:id="@+id/editTextPhone"
+            android:id="@+id/editTextTextPrecoFruta"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="61dp"
             android:ems="10"
-            android:inputType="phone" />
+            android:inputType="textPersonName" />
 
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:onClick="salvar"
+            android:text="Salvar" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

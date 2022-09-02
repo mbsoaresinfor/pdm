@@ -14,13 +14,19 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ListagemFrutasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OlaMundoActivity"
+            android:exported="false" />
+        <activity
             android:name=".TerceiraActivity"
             android:exported="false" />
         <activity
             android:name=".SegundaActivity"
             android:exported="false" />
         <activity
-            android:name=".OlaMundoActivity"
+            android:name=".CadastroFrutasActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

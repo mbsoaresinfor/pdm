@@ -11,8 +11,7 @@ public class SegundaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segunda);
-        //String nome = (String)getIntent().getSerializableExtra("meu_nome");
-        String nome = "marcelo soares";
+        String nome = (String)getIntent().getSerializableExtra("meu_nome");
 
         Toast.makeText(this,nome, Toast.LENGTH_LONG);
     }
