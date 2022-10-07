@@ -10,10 +10,16 @@ import java.util.List;
 
 public class ListagemFrutaListViewActivity extends AppCompatActivity {
 
+    BancoDadosFruta bancoDadosFruta = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listagem_fruta_list_view);
+
+        bancoDadosFruta = new BancoDadosFruta(this);
+
+
 
         Fruta fruta1 = new Fruta();
         fruta1.setPreco(3f);
