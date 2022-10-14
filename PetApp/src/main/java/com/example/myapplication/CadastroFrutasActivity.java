@@ -15,12 +15,15 @@ import java.util.List;
 
 public class CadastroFrutasActivity extends AppCompatActivity {
 
-    List<Fruta> listaFruta = new ArrayList<>();
+
+    BancoDadosFruta bancoDadosFruta = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_frutas);
+
+        bancoDadosFruta = new BancoDadosFruta(this);
     }
 
     @Override
@@ -90,10 +93,11 @@ public class CadastroFrutasActivity extends AppCompatActivity {
         Float precoFloat = Float.parseFloat(preco.getText().toString());
         fruta.setPreco(precoFloat);
 
-        listaFruta.add(fruta);
+        //listaFruta.add(fruta);
+        bancoDadosFruta.salvarFruta2(fruta);
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable("lista", (Serializable) listaFruta);
+        bundle.putSerializable("lista", (Serializable) bancoDadosFruta.buscaTodasFrutas());
 
         Intent intent= new Intent(this,ListagemFrutasActivity.class);
         intent.putExtras(bundle);
