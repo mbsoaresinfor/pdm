@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,6 +85,52 @@ public class BancoDadosFruta extends SQLiteOpenHelper {
         }
         cursor.close();
         return listaFruta;
+    }
+
+    public List<Fruta> buscaPorId(Integer id){
+        List<Fruta> listaFruta = new ArrayList<>();
+        String sql = "select nome,preco from fruta where id = " + id;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql,null);
+        cursor.moveToFirst();
+        for(int i=0; i < cursor.getCount(); i++){
+            Fruta fruta = new Fruta();
+            fruta.setNome(cursor.getString(0));
+            fruta.setPreco(cursor.getFloat(1));
+            listaFruta.add(fruta);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return listaFruta;
+    }
+
+    public List<Fruta> buscaPorPrecoMaiorQue(Float preco){
+        List<Fruta> listaFruta = new ArrayList<>();
+        String sql = "select nome,preco from fruta where preco > " + preco;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql,null);
+        cursor.moveToFirst();
+        for(int i=0; i < cursor.getCount(); i++){
+            Fruta fruta = new Fruta();
+            fruta.setNome(cursor.getString(0));
+            fruta.setPreco(cursor.getFloat(1));
+            listaFruta.add(fruta);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return listaFruta;
+    }
+
+    public void deletarFrutaPorId(Integer id){
+        String sql = "delete from fruta where id = " + id;
+        Log.i("fruta","SQL deletarFrutaPorId: " + sql);
+        getWritableDatabase().execSQL(sql);
+    }
+
+    public void deletarFrutaPorNome(String nomeFruta){
+        String sql = "delete from fruta where nome == '" + nomeFruta + "'";
+        Log.i("fruta","SQL deletarFrutaPorNome: " + sql);
+        getWritableDatabase().execSQL(sql);
     }
 
 }
