@@ -105,4 +105,10 @@ public class CadastroFrutasActivity extends AppCompatActivity {
 
 
     }
+
+    public void abreTelaAtualizacao(View view) {
+
+        Intent intent = new Intent(this,UpdateFrutaActivity.class);
+        startActivity(intent);
+    }
 }
