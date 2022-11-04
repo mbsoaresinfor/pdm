@@ -32,21 +32,21 @@ public class CadastroFrutasActivity extends AppCompatActivity {
         bancoDadosFruta = new BancoDadosFruta(this);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.uol.com.br/")
+                .baseUrl("https://api-exemplo-marcelo.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ConexaoAPI service = retrofit.create(ConexaoAPI.class);
-        Call<String> retorno = service.listar();
+        Call<Usuario> retorno = service.listar();
 
-        retorno.enqueue(new Callback<String>() {
+        retorno.enqueue(new Callback<Usuario>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Log.i("fruta",response.body());
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                Log.i("fruta",response.body().toString());
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
+            public void onFailure(Call<Usuario> call, Throwable t) {
                 call.cancel();
                 Log.e("fruta",t.toString());
             }
