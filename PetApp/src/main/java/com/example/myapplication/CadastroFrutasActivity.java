@@ -13,6 +13,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class CadastroFrutasActivity extends AppCompatActivity {
 
 
@@ -24,6 +30,28 @@ public class CadastroFrutasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_frutas);
 
         bancoDadosFruta = new BancoDadosFruta(this);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.uol.com.br/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ConexaoAPI service = retrofit.create(ConexaoAPI.class);
+        Call<String> retorno = service.listar();
+
+        retorno.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.i("fruta",response.body());
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                call.cancel();
+                Log.e("fruta",t.toString());
+            }
+        });
+
     }
 
     @Override
