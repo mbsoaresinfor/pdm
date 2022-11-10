@@ -9,9 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,26 +35,25 @@ public class CadastroFrutasActivity extends AppCompatActivity {
 
         bancoDadosFruta = new BancoDadosFruta(this);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api-exemplo-marcelo.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        String resultado = null;
+        String enderecoServidor = "https://api-exemplo-marcelo.herokuapp.com/usuarios";
 
-        ConexaoAPI service = retrofit.create(ConexaoAPI.class);
-        Call<Usuario> retorno = service.listar();
-
-        retorno.enqueue(new Callback<Usuario>() {
-            @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                Log.i("fruta",response.body().toString());
+        try{
+            resultado = new ClientHttp()
+                    .executeOnExecutor(Executors.newSingleThreadExecutor(),
+                            enderecoServidor,"GET","").get();
+            Log.i("aula",resultado);
+            Usuario[] usuarios = new Gson().fromJson(resultado,Usuario[].class);
+            List<Usuario> listaUsuario = Arrays.asList(usuarios);
+            for(Usuario usuario : listaUsuario){
+                Log.i("aula",usuario.nome);
+                Log.i("aula",usuario.senha);
+                Log.i("aula",usuario.email);
             }
 
-            @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
-                call.cancel();
-                Log.e("fruta",t.toString());
-            }
-        });
+        }catch(Exception e){
+            Log.e("aula",e.getMessage());
+        }
 
     }
 
